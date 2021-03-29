@@ -1,0 +1,4 @@
+# Project exclude paths
+/out/
+/stage5/hello_maven/target/
+/stage5/lagou_edu_home/target/
