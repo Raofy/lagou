@@ -52,7 +52,7 @@ public class CourseDaoImpl implements CourseDao {
             params.add(0);
             if (null != name && "" != name) {
                 sql.append("AND course_name like ? ");
-                name = "%"+name+"%";
+                name = "%" + name + "%";
                 params.add(name);
             }
             if (null != status && "" != status) {
@@ -151,10 +151,10 @@ public class CourseDaoImpl implements CourseDao {
                     "update_time = ? \n" +
                     "WHERE id = ?";
 
-            Object[] param = {course.getCourse_name(),course.getBrief(),course.getTeacher_name(),course.getTeacher_info(),
-                    course.getPreview_first_field(),course.getPreview_second_field(),course.getDiscounts(),course.getPrice(),
-                    course.getPrice_tag(),course.getShare_image_title(),course.getShare_title(),course.getShare_description(),course.getCourse_description(),
-                    course.getCourse_img_url(),course.getUpdate_time(),course.getId()};
+            Object[] param = {course.getCourse_name(), course.getBrief(), course.getTeacher_name(), course.getTeacher_info(),
+                    course.getPreview_first_field(), course.getPreview_second_field(), course.getDiscounts(), course.getPrice(),
+                    course.getPrice_tag(), course.getShare_image_title(), course.getShare_title(), course.getShare_description(), course.getCourse_description(),
+                    course.getCourse_img_url(), course.getUpdate_time(), course.getId()};
 
             int row = qr.update(sql, param);
 
@@ -187,6 +187,23 @@ public class CourseDaoImpl implements CourseDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    @Override
+    public Course findCourseById(int courseId) {
+        try {
+            // 1. 创建QueryRunner
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            // 2. 编写sql语句
+            String sql = "";
+
+            // 3. 查询数据库并返回结果
+            return queryRunner.query(sql, new BeanHandler<>(Course.class), courseId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

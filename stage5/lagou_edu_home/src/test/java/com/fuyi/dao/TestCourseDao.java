@@ -20,6 +20,9 @@ public class TestCourseDao {
         dao.findCourseByNameAndStatus("Java", "1").forEach(System.out::println);
     }
 
+    /**
+     * 保存课程相关的营销信息
+     */
     @Test
     public void testCourseSalesInfo() {
         //1.创建course对象
@@ -47,10 +50,21 @@ public class TestCourseDao {
         System.out.println(result);
     }
 
+    /**
+     * 修改课程状态
+     */
     @Test
     public void testUpdateCourseStatus() {
         int status = 0;
         int courseId = 1;
         System.out.println(dao.updateCourseStatus(courseId, status));
+    }
+
+    /**
+     * 根据ID查询课程信息
+     */
+    @Test
+    public void testFindCourseById() {
+        System.out.println(dao.findCourseById(1));
     }
 }

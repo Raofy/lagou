@@ -35,4 +35,9 @@ public class CourseServiceImpl implements CourseService {
     public int updateCourseStatus(int courseId) {
         return courseDao.updateCourseStatus(courseId, 0);
     }
+
+    @Override
+    public Course findCourseById(int courseId) {
+        return courseDao.findCourseById(courseId);
+    }
 }

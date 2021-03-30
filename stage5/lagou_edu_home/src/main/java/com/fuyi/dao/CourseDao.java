@@ -39,4 +39,6 @@ public interface CourseDao {
   public String updateCourseSalesInfo(Course course);
 
   public int updateCourseStatus(int courseId, int status);
+
+  public Course findCourseById(int courseId);
 }
