@@ -19,4 +19,6 @@ public interface CourseContentService {
 
     public int updateSectionStatus(int sessionId, int status);
 
+    public int saveOrUpdateLesson(Course_Lesson lesson);
+
 }

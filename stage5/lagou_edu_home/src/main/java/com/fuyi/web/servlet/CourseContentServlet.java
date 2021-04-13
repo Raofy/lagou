@@ -65,11 +65,11 @@ public class CourseContentServlet extends BaseServlet {
     public void saveOrUpdateSection(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 获取请求参数
-            Map<String, String[]> parameterMap = request.getParameterMap();
+            Object map = request.getAttribute("map");
 
             // 将Map转为实体类
             Course_Section courseSection = new Course_Section();
-            BeanUtils.populate(courseSection, parameterMap);
+            BeanUtils.populate(courseSection, (Map) map);
 
             // 业务处理
             CourseContentService courseContentService = new CourseContentServiceImpl();
@@ -106,7 +106,29 @@ public class CourseContentServlet extends BaseServlet {
         } catch (Exception e) {
 
         }
+    }
 
+    public void saveOrUpdateLesson(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            // 获取请求参数
+            Object map = request.getAttribute("map");
 
+            // 将Map转为实体类
+            Course_Lesson courseLesson = new Course_Lesson();
+            BeanUtils.populate(courseLesson, (Map) map);
+
+            // 业务处理
+            CourseContentService courseContentService = new CourseContentServiceImpl();
+            int result = courseContentService.saveOrUpdateLesson(courseLesson);
+
+            // 返回结果
+            if (result > 0) {
+                response.getWriter().print(StatusCode.SUCCESS.toString());
+            } else {
+                response.getWriter().print(StatusCode.FAIL.toString());
+            }
+        } catch (Exception e) {
+
+        }
     }
 }

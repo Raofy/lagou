@@ -51,4 +51,18 @@ public class CourseContentServiceImpl implements CourseContentService {
     public int updateSectionStatus(int sessionId, int status) {
         return courseContentDao.updateSectionStatus(sessionId, status);
     }
+
+    @Override
+    public int saveOrUpdateLesson(Course_Lesson lesson) {
+        if (lesson.getId() == 0) {                                     // 添加操作
+            lesson.setCreate_time(DateUtils.getDateFormat());
+            lesson.setUpdate_time(DateUtils.getDateFormat());
+            int result = courseContentDao.saveLesson(lesson);
+            return result;
+        } else {                                                       //更新操作
+            lesson.setUpdate_time(DateUtils.getDateFormat());
+            int result = courseContentDao.updateLesson(lesson);
+            return result;
+        }
+    }
 }

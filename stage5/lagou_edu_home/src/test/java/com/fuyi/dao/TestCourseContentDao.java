@@ -1,6 +1,7 @@
 package com.fuyi.dao;
 
 import com.fuyi.dao.impl.CourseContentDaoImpl;
+import com.fuyi.pojo.Course_Lesson;
 import com.fuyi.pojo.Course_Section;
 import com.fuyi.utils.DateUtils;
 import org.junit.Test;
@@ -65,5 +66,40 @@ public class TestCourseContentDao {
         int sessionId = 43;
         int status = 0;
         System.out.println(courseContentDao.updateSectionStatus(sessionId, status));
+    }
+
+    /**
+     * 保存课时信息
+     */
+    @Test
+    public void testSaveCourseLesson() {
+        Course_Lesson courseLesson = new Course_Lesson();
+        courseLesson.setCourse_id(1);
+        courseLesson.setSection_id(1);
+        courseLesson.setTheme("主题一");
+        courseLesson.setDuration(10);
+        courseLesson.setIs_free(0);
+        courseLesson.setOrderNum(1);
+        courseLesson.setCreate_time(DateUtils.getDateFormat());
+        courseLesson.setUpdate_time(DateUtils.getDateFormat());
+        System.out.println(courseContentDao.saveLesson(courseLesson));
+    }
+
+    /**
+     * 更新课时信息
+     */
+    @Test
+    public void testUpdateCourseLesson() {
+        Course_Lesson courseLesson = new Course_Lesson();
+        courseLesson.setId(43);
+        courseLesson.setCourse_id(1);
+        courseLesson.setSection_id(1);
+        courseLesson.setTheme("主题1  ");
+        courseLesson.setDuration(10);
+        courseLesson.setIs_free(0);
+        courseLesson.setOrderNum(1);
+        courseLesson.setCreate_time(DateUtils.getDateFormat());
+        courseLesson.setUpdate_time(DateUtils.getDateFormat());
+        System.out.println(courseContentDao.updateLesson(courseLesson));
     }
 }

@@ -149,4 +149,46 @@ public class CourseContentDaoImpl implements CourseContentDao {
         }
         return 0;
     }
+
+    @Override
+    public int saveLesson(Course_Lesson lesson) {
+        try {
+            QueryRunner qr = new QueryRunner(DruidUtils.getDataSource());
+
+            String sql = "insert into course_lesson (" +
+                    "course_id, " +
+                    "section_id, " +
+                    "theme, " +
+                    "duration, " +
+                    "is_free, " +
+                    "order_num, " +
+                    "create_time, update_time) " +
+                    "value(?, ?, ? , ? , ? , ? , ? , ?);";
+
+            Object[] param = {lesson.getCourse_id(), lesson.getSection_id(), lesson.getTheme(), lesson.getDuration(),
+            lesson.getIs_free(), lesson.getOrderNum(), lesson.getCreate_time(), lesson.getUpdate_time()};
+
+            int row = qr.update(sql, param);
+            return row;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public int updateLesson(Course_Lesson lesson) {
+
+        try {
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+            String sql = "update course_lesson set course_id = ?, section_id = ?, theme = ?, duration = ?, is_free = ?, order_num = ?, update_time = ? where id = ?;";
+            Object[] param = {lesson.getCourse_id(), lesson.getSection_id(), lesson.getTheme(), lesson.getDuration(),
+            lesson.getIs_free(), lesson.getOrderNum(), lesson.getUpdate_time(), lesson.getId()};
+            int update = queryRunner.update(sql, param);
+            return update;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
