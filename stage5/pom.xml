@@ -16,5 +16,14 @@
         <module>lagou_edu_home</module>
     </modules>
 
+    <dependencies>
+        <!-- 解决跨域问题所需依赖 -->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>2.5</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
