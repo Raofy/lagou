@@ -78,6 +78,6 @@ public class Course_Section  implements Serializable {
   /**
    * 课程章节所对应得课时信息
    */
-  private List<Course_Lesson> course_lessons;
+  private List<Course_Lesson> lessonList;
 
 }

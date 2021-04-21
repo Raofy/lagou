@@ -27,7 +27,7 @@ public class BaseServlet extends HttpServlet {
         String contentType = request.getHeader("Content-Type");
 
         // 1.2 判断传递格式是不是JSON格式
-        if("application/json;charset=utf-8".equals(contentType) || "application/json".equals(contentType)){
+        if("application/json;charset=utf-8".equalsIgnoreCase(contentType) || "application/json".equals(contentType)){
             //是JOSN格式 调用getPostJSON
             String postJSON = getPostJSON(request);
 

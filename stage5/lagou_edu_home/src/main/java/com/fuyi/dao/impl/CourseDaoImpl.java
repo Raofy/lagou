@@ -197,7 +197,7 @@ public class CourseDaoImpl implements CourseDao {
             QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
 
             // 2. 编写sql语句
-            String sql = "";
+            String sql = "Select * from course where id = ?";
 
             // 3. 查询数据库并返回结果
             return queryRunner.query(sql, new BeanHandler<>(Course.class), courseId);

@@ -33,7 +33,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int updateCourseStatus(int courseId) {
-        return courseDao.updateCourseStatus(courseId, 0);
+        Course course = findCourseById(courseId);
+        if (course.getStatus() == 0) {
+            return courseDao.updateCourseStatus(courseId, 1);
+        } else {
+            return courseDao.updateCourseStatus(courseId, 0);
+        }
     }
 
     @Override

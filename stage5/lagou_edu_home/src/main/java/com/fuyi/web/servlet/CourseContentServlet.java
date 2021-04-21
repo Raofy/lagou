@@ -65,11 +65,11 @@ public class CourseContentServlet extends BaseServlet {
     public void saveOrUpdateSection(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 获取请求参数
-            Object map = request.getAttribute("map");
+            Map map = (Map) request.getAttribute("map");
 
             // 将Map转为实体类
             Course_Section courseSection = new Course_Section();
-            BeanUtils.populate(courseSection, (Map) map);
+            BeanUtils.copyProperties(courseSection, map.get("section"));
 
             // 业务处理
             CourseContentService courseContentService = new CourseContentServiceImpl();

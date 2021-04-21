@@ -34,9 +34,9 @@ public class CourseContentDaoImpl implements CourseContentDao {
                 for (Course_Section course_section : query) {
                     List<Course_Lesson> lessonBySectionId = findLessonBySectionId(course_section.getId());
                     if (lessonBySectionId != null) {
-                        course_section.setCourse_lessons(lessonBySectionId);
+                        course_section.setLessonList(lessonBySectionId);
                     } else {
-                        course_section.setCourse_lessons(new ArrayList<>());
+                        course_section.setLessonList(new ArrayList<>());
                     }
                 }
                 return query;
