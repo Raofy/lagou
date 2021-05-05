@@ -39,7 +39,7 @@ public class Course_Lesson  implements Serializable {
 
   //课时排序
   @JSONField(ordinal = 7)
-  private int orderNum;
+  private int order_num;
 
   //课时状态,0-隐藏，1-未发布，2-已发布
   @JSONField(ordinal = 8)
@@ -55,24 +55,8 @@ public class Course_Lesson  implements Serializable {
 
   //是否删除
   @JSONField(ordinal = 11)
-  private int isDel;
+  private int is_del;
 
-  @Override
-  public String toString() {
-    return "Course_Lesson{" +
-            "id=" + id +
-            ", course_id=" + course_id +
-            ", section_id=" + section_id +
-            ", theme='" + theme + '\'' +
-            ", duration=" + duration +
-            ", is_free=" + is_free +
-            ", orderNum=" + orderNum +
-            ", status=" + status +
-            ", create_time='" + create_time + '\'' +
-            ", update_time='" + update_time + '\'' +
-            ", isDel=" + isDel +
-            '}';
-  }
 
   @JSONField(serialize = false)
   private String start_img_url; //课时背景图

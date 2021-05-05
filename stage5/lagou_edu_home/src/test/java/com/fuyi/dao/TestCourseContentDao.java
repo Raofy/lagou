@@ -79,7 +79,7 @@ public class TestCourseContentDao {
         courseLesson.setTheme("主题一");
         courseLesson.setDuration(10);
         courseLesson.setIs_free(0);
-        courseLesson.setOrderNum(1);
+        courseLesson.setOrder_num(1);
         courseLesson.setCreate_time(DateUtils.getDateFormat());
         courseLesson.setUpdate_time(DateUtils.getDateFormat());
         System.out.println(courseContentDao.saveLesson(courseLesson));
@@ -97,7 +97,7 @@ public class TestCourseContentDao {
         courseLesson.setTheme("主题1  ");
         courseLesson.setDuration(10);
         courseLesson.setIs_free(0);
-        courseLesson.setOrderNum(1);
+        courseLesson.setOrder_num(1);
         courseLesson.setCreate_time(DateUtils.getDateFormat());
         courseLesson.setUpdate_time(DateUtils.getDateFormat());
         System.out.println(courseContentDao.updateLesson(courseLesson));

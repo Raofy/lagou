@@ -21,4 +21,7 @@ public interface CourseContentService {
 
     public int saveOrUpdateLesson(Course_Lesson lesson);
 
+    //根据章节ID 回显章节信息
+    public Course_Section findSectionBySectionId(int SectionId);
+
 }

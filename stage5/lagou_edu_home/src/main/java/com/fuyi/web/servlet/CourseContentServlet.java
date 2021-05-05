@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,11 +112,11 @@ public class CourseContentServlet extends BaseServlet {
     public void saveOrUpdateLesson(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 获取请求参数
-            Object map = request.getAttribute("map");
+            HashMap<String, Object> map = (HashMap<String, Object>) request.getAttribute("map");
 
             // 将Map转为实体类
             Course_Lesson courseLesson = new Course_Lesson();
-            BeanUtils.populate(courseLesson, (Map) map);
+            BeanUtils.copyProperties(courseLesson, (Map) map.get("lesson"));
 
             // 业务处理
             CourseContentService courseContentService = new CourseContentServiceImpl();
@@ -129,6 +130,26 @@ public class CourseContentServlet extends BaseServlet {
             }
         } catch (Exception e) {
 
+        }
+    }
+
+    //根据章节ID 回显章节信息
+    public void findSectionBySectionId(HttpServletRequest request,HttpServletResponse response){
+
+        try {
+            //获取参数
+            int section_id = Integer.parseInt(request.getParameter("section_id"));
+
+            //业务处理
+            CourseContentService contentService = new CourseContentServiceImpl();
+            Course_Section section = contentService.findSectionBySectionId(section_id);
+
+            //返回JSON数据
+            SimplePropertyPreFilter filter = new SimplePropertyPreFilter(Course_Section.class,"id","section_name");
+            String result = JSON.toJSONString(section, filter);
+            response.getWriter().print(result);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

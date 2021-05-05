@@ -65,4 +65,12 @@ public class CourseContentServiceImpl implements CourseContentService {
             return result;
         }
     }
+
+    //根据章节ID 回显章节信息
+    @Override
+    public Course_Section findSectionBySectionId(int SectionId) {
+        Course_Section sectionBySectionId = courseContentDao.findSectionBySectionId(SectionId);
+
+        return sectionBySectionId;
+    }
 }

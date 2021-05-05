@@ -75,4 +75,12 @@ public interface CourseContentDao {
      * @return
      */
     public int updateLesson(Course_Lesson lesson);
+
+    /**
+     * 根据章节ID 回显章节信息
+     *
+     * @param SectionId
+     * @return
+     */
+    public Course_Section findSectionBySectionId(int SectionId);
 }

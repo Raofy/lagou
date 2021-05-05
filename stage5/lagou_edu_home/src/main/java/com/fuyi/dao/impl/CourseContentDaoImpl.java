@@ -166,7 +166,7 @@ public class CourseContentDaoImpl implements CourseContentDao {
                     "value(?, ?, ? , ? , ? , ? , ? , ?);";
 
             Object[] param = {lesson.getCourse_id(), lesson.getSection_id(), lesson.getTheme(), lesson.getDuration(),
-            lesson.getIs_free(), lesson.getOrderNum(), lesson.getCreate_time(), lesson.getUpdate_time()};
+            lesson.getIs_free(), lesson.getOrder_num(), lesson.getCreate_time(), lesson.getUpdate_time()};
 
             int row = qr.update(sql, param);
             return row;
@@ -183,12 +183,30 @@ public class CourseContentDaoImpl implements CourseContentDao {
             QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
             String sql = "update course_lesson set course_id = ?, section_id = ?, theme = ?, duration = ?, is_free = ?, order_num = ?, update_time = ? where id = ?;";
             Object[] param = {lesson.getCourse_id(), lesson.getSection_id(), lesson.getTheme(), lesson.getDuration(),
-            lesson.getIs_free(), lesson.getOrderNum(), lesson.getUpdate_time(), lesson.getId()};
+            lesson.getIs_free(), lesson.getOrder_num(), lesson.getUpdate_time(), lesson.getId()};
             int update = queryRunner.update(sql, param);
             return update;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public Course_Section findSectionBySectionId(int SectionId) {
+
+        try {
+            //创建QueryRunner
+            QueryRunner qr = new QueryRunner(DruidUtils.getDataSource());
+            //编写sql
+            String sql = "select id,section_name from course_section where id = ?";
+            //执行语句
+            Course_Section query = qr.query(sql, new BeanHandler<Course_Section>(Course_Section.class), SectionId);
+            //返回结果
+            return query;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
