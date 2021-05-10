@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+    <!--查询所有-->
+    <select id="findAll" resultType="com.fuyi.entity.User">
+        select * from user
+    </select>
+
+    <!-- 新增 -->
+    <insert id="save" parameterType="com.fuyi.entity.User">
+        insert into user (username, birthday, sex, address)
+        value (#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="updateById" parameterType="com.fuyi.entity.User">
+        update user
+        set
+        username = #{username},
+        birthday = #{birthday},
+        sex = #{sex},
+        address = #{address}
+        where id = #{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from user where id = #{id}
+    </delete>
+</mapper>
